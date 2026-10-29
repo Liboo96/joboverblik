@@ -34,7 +34,7 @@ Codex har været brugt til løsningsforslag, kode, fejlretning og automatiserede
 
 Status den 29. oktober 2026.
 
-- Demoens fire automatiserede tests består. De omfatter eksempeldata, nulstilling, adskillelse fra den personlige app og modulafhængigheder.
+- Demoens syv automatiserede tests består. De omfatter eksempeldata, nulstilling, adskillelse fra den personlige app, modulafhængigheder, filtrering og escaping af tekst i jobkort.
 - Den personlige apps 34 tests bestod ved den seneste kontrol i denne udviklingsrunde.
 - Demoens layout er kontrolleret i browser ved 320 og 375 pixels bredde samt på desktop.
 - Oprettelse, opfølgning og mobilnavigation er afprøvet i browser under udviklingen.

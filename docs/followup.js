@@ -1,13 +1,98 @@
-import{localDay,followupState,scheduleFollowup,finishFollowup}from'./logic.mjs?v=demo-9';
-export function initFollowup({getJobs,save,render,toast}){
- const dialog=document.createElement('dialog');dialog.id='followup-dialog';
- dialog.innerHTML='<form id="followup-form"><div class="modal-head"><div><div class="eyebrow">DIT NÆSTE SKRIDT</div><h2>Opfølgning</h2></div><button type="button" class="icon-btn" id="followup-close" aria-label="Luk opfølgning">Luk</button></div><strong id="followup-title"></strong><p id="followup-context" class="followup-context"></p><label>Opfølgningsdato<input type="date" id="followup-date" required><small>Du vælger selv, hvornår du vil tjekke efter svar eller kontakte virksomheden.</small></label><p class="form-note">Påmindelsen vises i appen. Den sender ikke en besked til virksomheden.</p><p role="status" id="followup-error"></p><div class="modal-actions"><button type="button" id="followup-done">Markér som fulgt op</button><button type="submit" class="primary">Gem opfølgningsdato</button></div></form>';
- document.body.append(dialog);let currentId;
- const title=dialog.querySelector('#followup-title'),context=dialog.querySelector('#followup-context'),date=dialog.querySelector('#followup-date'),error=dialog.querySelector('#followup-error'),done=dialog.querySelector('#followup-done');
- const find=()=>getJobs().find(j=>j.id===currentId);
- const persist=updated=>{if(save(getJobs().map(j=>j.id===updated.id?updated:j))){dialog.close();render();return true}return false};
- dialog.querySelector('#followup-close').addEventListener('click',()=>dialog.close());
- dialog.querySelector('form').addEventListener('submit',event=>{event.preventDefault();try{const j=find();if(!j)throw Error('Posten findes ikke længere.');if(persist(scheduleFollowup(j,date.value)))toast('Opfølgningsdatoen er gemt.')}catch(e){error.textContent=e.message}});
- done.addEventListener('click',()=>{try{const j=find();if(!j)throw Error('Posten findes ikke længere.');if(persist(finishFollowup(j)))toast('Markeret som fulgt op. Ansøgningens status er bevaret.')}catch(e){error.textContent=e.message}});
- return{open(id){const j=getJobs().find(j=>j.id===id);if(!j)return;currentId=id;title.textContent=`${j.title} · ${j.company}`;const state=followupState(j);context.textContent=state==='needs-date'?'Ansøgningsfristen er passeret. Vælg, hvornår du vil følge op.':state==='due'?'Din planlagte opfølgning er klar. Du kan flytte datoen eller markere, at du har fulgt op.':state==='planned'?'Du har en kommende opfølgning. Her kan du ændre datoen.':'Planlæg en opfølgning på denne post.';date.value=j.followup||localDay();error.textContent='';done.hidden=state==='none';document.querySelector('#notice')?.close();dialog.showModal();}};
+import { localDay, followupState, scheduleFollowup, finishFollowup } from './logic.mjs?v=demo-10';
+export function initFollowup({ getJobs, save, render, toast }) {
+  const dialog = document.createElement('dialog');
+  dialog.id = 'followup-dialog';
+  dialog.innerHTML = `
+<form id="followup-form">
+  <div class="modal-head">
+    <div>
+      <div class="eyebrow">DIT NÆSTE SKRIDT</div>
+      <h2>Opfølgning</h2>
+    </div>
+    <button
+      type="button"
+      class="icon-btn"
+      id="followup-close"
+      aria-label="Luk opfølgning"
+    >
+      Luk
+    </button>
+  </div>
+  <strong id="followup-title"></strong>
+  <p id="followup-context" class="followup-context"></p>
+  <label
+    >Opfølgningsdato<input type="date" id="followup-date" required /><small
+      >Du vælger selv, hvornår du vil tjekke efter svar eller kontakte
+      virksomheden.</small
+    ></label
+  >
+  <p class="form-note">
+    Påmindelsen vises i appen. Den sender ikke en besked til virksomheden.
+  </p>
+  <p role="status" id="followup-error"></p>
+  <div class="modal-actions">
+    <button type="button" id="followup-done">Markér som fulgt op</button
+    ><button type="submit" class="primary">Gem opfølgningsdato</button>
+  </div>
+</form>
+`;
+  document.body.append(dialog);
+  let currentId;
+  const title = dialog.querySelector('#followup-title'),
+    context = dialog.querySelector('#followup-context'),
+    date = dialog.querySelector('#followup-date'),
+    error = dialog.querySelector('#followup-error'),
+    done = dialog.querySelector('#followup-done');
+  const find = () => getJobs().find((j) => j.id === currentId);
+  const persist = (updated) => {
+    if (save(getJobs().map((j) => (j.id === updated.id ? updated : j)))) {
+      dialog.close();
+      render();
+      return true;
+    }
+    return false;
+  };
+  dialog.querySelector('#followup-close').addEventListener('click', () => dialog.close());
+  dialog.querySelector('form').addEventListener('submit', (event) => {
+    event.preventDefault();
+    try {
+      const j = find();
+      if (!j) throw Error('Posten findes ikke længere.');
+      if (persist(scheduleFollowup(j, date.value))) toast('Opfølgningsdatoen er gemt.');
+    } catch (e) {
+      error.textContent = e.message;
+    }
+  });
+  done.addEventListener('click', () => {
+    try {
+      const j = find();
+      if (!j) throw Error('Posten findes ikke længere.');
+      if (persist(finishFollowup(j)))
+        toast('Markeret som fulgt op. Ansøgningens status er bevaret.');
+    } catch (e) {
+      error.textContent = e.message;
+    }
+  });
+  return {
+    open(id) {
+      const j = getJobs().find((j) => j.id === id);
+      if (!j) return;
+      currentId = id;
+      title.textContent = `${j.title} · ${j.company}`;
+      const state = followupState(j);
+      context.textContent =
+        state === 'needs-date'
+          ? 'Ansøgningsfristen er passeret. Vælg, hvornår du vil følge op.'
+          : state === 'due'
+            ? 'Din planlagte opfølgning er klar. Du kan flytte datoen eller markere, at du har fulgt op.'
+            : state === 'planned'
+              ? 'Du har en kommende opfølgning. Her kan du ændre datoen.'
+              : 'Planlæg en opfølgning på denne post.';
+      date.value = j.followup || localDay();
+      error.textContent = '';
+      done.hidden = state === 'none';
+      document.querySelector('#notice')?.close();
+      dialog.showModal();
+    },
+  };
 }

@@ -26,18 +26,21 @@ HTML, CSS og JavaScript-moduler uden et frontend-framework. Demoen bruger sessio
 
 ## Kør og kontroller
 
-Kræver Node.js til tests og Python 3 til nedenstående lokale server:
-
 ```sh
+npm ci
 npm test
-python3 -m http.server 8765 --bind 127.0.0.1 --directory dist
+npm run build
+npm run check
+python3 -m http.server 8765 --bind 127.0.0.1 --directory docs
 ```
 
-Åbn http://127.0.0.1:8765. Testene kontrollerer eksempeldata, nulstilling, adskillelse fra den private app og lokale modulafhængigheder. De erstatter ikke en visuel browserkontrol.
+Åbn http://127.0.0.1:8765. Node.js 20+ og Python 3 kræves til disse kommandoer. Appen selv kører som almindelige HTML-, CSS- og JavaScript-filer i browseren.
 
-## Udgivelse
+## Videreudvikling og udgivelse
 
-GitHub Pages udgiver `docs/` fra main-branchen. Mappen er en kopi af demoens `dist/`. Kør `npm test` før opdatering og hold de to mapper ens. Repositoryet indeholder demoen, ikke den personlige app eller udviklingsudgaverne med konti.
+Rediger `src/`. `npm run build` genererer `docs/`, som GitHub Pages udgiver fra `main`. Der skal ikke vedligeholdes to manuelle kopier af appen.
+
+Læs [udviklervejledningen](DEVELOPMENT.md) for filoversigt, dataflow, kommentarer til vigtige regler og kontrol før udgivelse. Brug `npm run format` til ensartet formatering. Prettier er kun et udviklingsværktøj og hentes ikke af besøgendes browsere.
 
 ## Mulig videreudvikling
 

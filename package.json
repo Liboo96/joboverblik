@@ -1,1 +1,15 @@
-{"name":"joboverblik-public-demo","private":true,"type":"module","scripts":{"test":"node --test tests.mjs"}}
+{
+  "name": "joboverblik-public-demo",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests.mjs",
+    "build": "node scripts/build.mjs",
+    "check": "node scripts/check.mjs",
+    "format": "prettier --write src scripts tests.mjs *.md package.json .prettierrc.json",
+    "format:check": "prettier --check src scripts tests.mjs *.md package.json .prettierrc.json"
+  },
+  "devDependencies": {
+    "prettier": "3.9.10"
+  }
+}
