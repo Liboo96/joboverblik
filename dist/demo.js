@@ -1,8 +1,22 @@
 const feedbackUrl='https://docs.google.com/forms/d/e/1FAIpQLSfqRddX0xlWpuD-YKOi-6N9-KLvevSfDYpiSvAIV0T-4rlp7Q/viewform';
 function openFeedback(){window.open(feedbackUrl,'_blank','noopener,noreferrer');}
-export function initDemo({reset,showReminders}){
- const banner=document.createElement('section');banner.className='demo-banner';banner.innerHTML='<div><span class="demo-pill">ÅBEN DEMO</span><strong>Prøv et enklere overblik over jobsøgningen</strong><p>Du prøver fiktive oplysninger. Ændringer gemmes kun i denne fane. Brug ikke personlige oplysninger.</p></div><div class="demo-banner-actions"><button id="demo-try" class="primary">Prøv en påmindelse</button><button id="demo-feedback" aria-label="Giv feedback – åbner Google Forms i en ny fane">Giv feedback ↗</button><button id="demo-reset">Start forfra</button></div>';
+export function initDemo({reset,showReminders,addRecord,changeStatus,planFollowup}){
+ const sidebar=document.querySelector('aside');
+ const menu=document.createElement('nav');menu.id='demo-menu';menu.className='demo-menu';menu.setAttribute('aria-label','Visninger');
+ sidebar.querySelectorAll('.nav').forEach(button=>menu.append(button));
+ sidebar.querySelector('.side-label').after(menu);
+ const toggle=document.createElement('button');toggle.type='button';toggle.className='menu-toggle';toggle.textContent='Menu ☰';toggle.setAttribute('aria-controls','demo-menu');toggle.setAttribute('aria-expanded','false');menu.before(toggle);
+ const closeMenu=()=>{menu.classList.remove('is-open');toggle.setAttribute('aria-expanded','false');};
+ toggle.addEventListener('click',()=>{const open=menu.classList.toggle('is-open');toggle.setAttribute('aria-expanded',String(open));});
+ menu.addEventListener('click',event=>{if(event.target.closest('.nav')){closeMenu();if(matchMedia('(max-width:760px)').matches){toggle.focus();document.querySelector('.workspace').scrollIntoView({block:'start'});}}});
+ menu.addEventListener('keydown',event=>{if(event.key==='Escape'){closeMenu();toggle.focus();}});
+ const banner=document.createElement('section');banner.className='demo-banner';banner.innerHTML='<div><span class="demo-pill">ÅBEN DEMO</span><p>Prøv med fiktive data. Ændringer gemmes kun i denne fane. Brug ikke personlige oplysninger.</p></div><div class="demo-banner-actions"><button id="demo-try">Påmindelser</button><button id="demo-feedback" aria-label="Giv feedback – åbner Google Forms i en ny fane">Giv feedback ↗</button><button id="demo-reset">Start forfra</button></div>';
  document.querySelector('main').prepend(banner);
+ const guide=document.createElement('details');guide.className='demo-guide';guide.innerHTML='<summary>Prøv demoen <span>3 små trin</span></summary><ol><li><strong>Tilføj en stilling</strong><p>Brug en fiktiv titel og virksomhed. Tryk Gem.</p><button type="button" id="guide-add">1. Tilføj en stilling</button></li><li><strong>Skift status</strong><p>Åbn en post. Vælg fx Sendt, og gem ændringen.</p><button type="button" id="guide-status">2. Prøv at ændre status</button></li><li><strong>Planlæg opfølgning</strong><p>Vælg en dato for dit næste skridt, og gem den.</p><button type="button" id="guide-followup">3. Vælg opfølgningsdato</button></li></ol><p class="guide-note">Du bestemmer selv rækkefølgen. Start forfra nulstiller prøveoplysningerne.</p>';
+ document.querySelector('.intro').after(guide);
+ guide.querySelector('#guide-add').addEventListener('click',addRecord);
+ guide.querySelector('#guide-status').addEventListener('click',changeStatus);
+ guide.querySelector('#guide-followup').addEventListener('click',planFollowup);
  document.querySelector('#demo-try').addEventListener('click',showReminders);
  document.querySelector('#demo-reset').addEventListener('click',()=>{reset()});
  document.querySelector('#demo-feedback').addEventListener('click',openFeedback);

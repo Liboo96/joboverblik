@@ -55,3 +55,45 @@ dialog{max-height:90dvh;overflow-y:auto;overscroll-behavior:contain}
  .notice-select{width:24px;height:24px;margin:0;outline-offset:4px}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+/* Compact demo introduction and optional walkthrough. */
+.demo-menu{display:flex;flex-direction:column;margin-bottom:12px}
+.menu-toggle{display:none}
+.demo-banner{padding:14px 18px;gap:16px}
+.demo-banner p{margin-top:5px;max-width:550px}
+.demo-banner-actions{flex:0 0 auto;flex-direction:row;flex-wrap:wrap}
+.demo-banner-actions button{min-height:44px}
+.demo-guide{border:1px solid var(--line);border-radius:12px;background:white;margin:0 0 24px}
+.demo-guide summary{cursor:pointer;padding:16px 18px;font-size:14px;font-weight:650;min-height:48px}
+.demo-guide summary span{font-size:12px;font-weight:400;color:#607065;margin-left:10px}
+.demo-guide summary:focus-visible{outline:3px solid #8abb9e;outline-offset:3px;border-radius:10px}
+.demo-guide ol{list-style:none;padding:0 18px;margin:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.demo-guide li{min-width:0;padding-top:15px;border-top:1px solid var(--line)}
+.demo-guide li strong{font-size:14px}
+.demo-guide li p{font-size:13px;color:#647269;line-height:1.65}
+.demo-guide button{min-height:44px;font-size:13px;width:100%;text-align:left}
+.guide-note{font-size:12px;line-height:1.6;color:#647269;padding:0 18px;margin:16px 0}
+@media(max-width:760px){
+ aside{grid-template-columns:minmax(0,1fr) auto;padding:12px 14px;align-items:center;gap:0}
+ .brand{grid-column:1;margin:0;font-size:18px}
+ .menu-toggle{display:block;grid-column:2;grid-row:1;min-height:44px;font-size:13px}
+ .demo-menu{display:none;grid-column:1/-1;grid-template-columns:1fr 1fr;gap:6px;margin:12px 0 0}
+ .demo-menu.is-open{display:grid}
+ .demo-menu .nav:last-of-type{grid-column:1/-1}
+ .demo-banner{margin-top:12px;padding:12px;gap:0}
+ .demo-banner p{font-size:12px;line-height:1.5}
+ .demo-banner-actions{margin-top:8px;gap:6px;display:flex;flex-wrap:wrap}
+ .demo-banner-actions button{flex:1 1 auto;padding:8px;font-size:12px}
+ header{height:42px;font-size:9px}
+ .intro{padding:18px 0 16px}
+ .intro .eyebrow{display:none}
+ h1{font-size:28px;letter-spacing:-1px;margin:0;line-height:1.2}
+ h1 br{display:none}
+ h1 span::before{content:' '}
+ .intro p{margin:8px 0 0;font-size:12px;max-width:none;line-height:1.6}
+ .intro>.primary{margin-top:12px;padding:10px}
+ .demo-guide{margin-bottom:18px}
+ .demo-guide summary{padding:13px 14px}
+ .demo-guide ol{grid-template-columns:1fr;padding:0 14px;gap:14px}
+ .guide-note{padding:0 14px}
+}

@@ -1,8 +1,8 @@
-import{initNotices}from'./notices.js?v=demo-4';
-import{initFollowup}from'./followup.js?v=demo-4';
-import{statuses,localDay,daysBetween,pending,alerts,validJob,isActivity,statusesFor,recordDate,withoutDemo,followupState,needsFollowup}from'./logic.mjs?v=demo-4';
-import{initDemo}from'./demo.js?v=demo-4';
-import{createDemoRecords}from'./sample.mjs?v=demo-4';
+import{initNotices}from'./notices.js?v=demo-5';
+import{initFollowup}from'./followup.js?v=demo-5';
+import{statuses,localDay,daysBetween,pending,alerts,validJob,isActivity,statusesFor,recordDate,withoutDemo,followupState,needsFollowup}from'./logic.mjs?v=demo-5';
+import{initDemo}from'./demo.js?v=demo-5';
+import{createDemoRecords}from'./sample.mjs?v=demo-5';
 const $=s=>document.querySelector(s),key='joboverblik.demo.v1',seenKey='joboverblik.demo.seen.v1';let jobs=[],seen={},view='all',toastTimer;
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const fmt=d=>d?new Intl.DateTimeFormat('da-DK',{day:'numeric',month:'short',year:d.slice(0,4)!==localDay().slice(0,4)?'numeric':undefined}).format(new Date(d+'T12:00:00')):'Ingen frist';
@@ -31,5 +31,5 @@ $('#add').addEventListener('click',()=>edit());for(const id of['close','cancel']
 $('#job-form').addEventListener('submit',e=>{e.preventDefault();const f=e.currentTarget,j=Object.fromEntries(new FormData(f));for(const k of['title','company','url','notes'])j[k]=j[k].trim();j.company=j.company||(isActivity(j)?'Arrangør ikke oplyst':'Virksomhed ikke oplyst');if(isActivity(j))j.deadline='';else j.activityDate='';const old=jobs.find(x=>x.id===j.id);j.id=j.id||crypto.randomUUID();j.createdAt=old?.createdAt||new Date().toISOString();if(old?.demo)j.demo=true;if(old?.sourceKey)j.sourceKey=old.sourceKey;if(old?.appliedDate)j.appliedDate=old.appliedDate;if(old?.lastFollowupAt)j.lastFollowupAt=old.lastFollowupAt;if(!validJob(j)){toast('Tjek felterne. Stilling og virksomhed skal udfyldes. Links skal begynde med https:// eller http://.');return}if(save(old?jobs.map(x=>x.id===j.id?j:x):[j,...jobs])){$('#editor').close();render();toast('Posten er gemt')}});
 $('#delete').addEventListener('click',()=>{const id=$('#job-form').elements.id.value;if(confirm('Vil du slette denne post?'))if(save(jobs.filter(j=>j.id!==id))){$('#editor').close();render();toast('Posten er slettet')}});
 document.querySelectorAll('.nav').forEach(b=>b.addEventListener('click',()=>{view=b.dataset.view;render()}));for(const id of['search','status-filter','sort'])$('#'+id).addEventListener(id==='search'?'input':'change',render);
-initDemo({reset:()=>{document.querySelectorAll('dialog[open]').forEach(d=>d.close());if(save(createDemoRecords())){seen={};sessionStorage.removeItem(seenKey);view='all';$('#search').value='';$('#status-filter').value='';render();toast('Demoen er klar fra start igen.');}},showReminders:()=>{const a=allAlerts();if(a.length)showNotices(a);else toast('Ingen påmindelser lige nu. Vælg Start forfra for at prøve igen.');}});
+initDemo({addRecord:()=>edit(),changeStatus:()=>{const job=jobs.find(j=>j.id==='demo-draft')||jobs.find(j=>!isActivity(j));edit(job?.id)},planFollowup:()=>{const job=jobs.find(j=>j.id==='demo-office'&&j.status!=='closed')||jobs.find(j=>!isActivity(j)&&j.status!=='closed');if(job)followupUI.open(job.id);else{toast('Tilføj en stilling først, så du kan planlægge opfølgning.');edit()}},reset:()=>{document.querySelectorAll('dialog[open]').forEach(d=>d.close());if(save(createDemoRecords())){seen={};sessionStorage.removeItem(seenKey);view='all';$('#search').value='';$('#status-filter').value='';render();toast('Demoen er klar fra start igen.');}},showReminders:()=>{const a=allAlerts();if(a.length)showNotices(a);else toast('Ingen påmindelser lige nu. Vælg Start forfra for at prøve igen.');}});
 render();setInterval(render,60000);document.addEventListener('visibilitychange',()=>{if(!document.hidden)render()});window.addEventListener('storage',e=>{if(e.key===key){try{const next=JSON.parse(e.newValue||'[]');if(Array.isArray(next)&&next.every(validJob)){jobs=next;render()}}catch{}}});
