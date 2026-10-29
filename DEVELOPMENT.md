@@ -68,6 +68,6 @@ Ved ændringer af modulafhængigheder eller styling skal `?v=demo-10`-cachemark�
 
 ## Kendte grænser
 
-Dette er en lille vanilla JavaScript-demo. `app.js` er fortsat appens koordinator; projektet kræver ikke et framework. CSS har flere responsive override-blokke fra udviklingen. De er nu læsbart formateret, men rækkefølgen påvirker layoutet. Saml dem kun med visuel kontrol af alle skærmstørrelser.
+Dette er en lille vanilla JavaScript-demo. `app.js` er fortsat appens koordinator; projektet kræver ikke et framework. CSS er opdelt i grundregler og samlede sektioner for hver skærmbredde. Ret den eksisterende regel i den relevante sektion frem for at tilføje nye overrides nederst. Regler for mindre skærme følger efter de bredere regler. Kontroller stadig mobil, tablet og desktop efter ændringer.
 
 Automatiske tests og syntaxcheck kan ikke bevise korrekt layout eller tilgængelighed. Undgå at kalde løsningen fuldt sikkerhedstestet eller generelt brugervalideret. Fejlbeskeder ved beskadiget browserlager er fortsat fra den oprindelige prototype; en særskilt forbedring bør tilføje en tydelig gendannelsesvej i demoen.

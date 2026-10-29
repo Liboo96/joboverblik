@@ -1,3 +1,5 @@
+/* Base styles and components. Each selector is defined once per breakpoint. */
+/* Theme and common controls */
 :root {
   font-family: 'DM Sans', sans-serif;
   color: #202d2a;
@@ -46,6 +48,7 @@ textarea:focus-visible {
   outline: 3px solid #8abb9e;
   outline-offset: 3px;
 }
+/* Page layout and desktop navigation */
 .shell {
   display: flex;
   min-height: 100vh;
@@ -128,10 +131,12 @@ aside {
   margin-top: 24px;
 }
 main {
-  width: 100%;
   max-width: 1600px;
   margin-left: 238px;
   padding: 0 48px;
+  min-width: 0;
+  flex: 1;
+  width: auto;
 }
 header {
   display: flex;
@@ -189,6 +194,7 @@ h1 span {
   padding: 13px 19px;
   font-size: 13px;
 }
+/* Summary and record list */
 .stats {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -241,15 +247,6 @@ h2 {
   color: #879188;
   margin: 6px 0 0;
 }
-.utilities {
-  display: flex;
-  gap: 8px;
-}
-.utilities button {
-  font-size: 11px;
-  padding: 8px 11px;
-  color: #6b796e;
-}
 .filters {
   display: flex;
   gap: 10px;
@@ -276,6 +273,7 @@ h2 {
   background: transparent;
   font-size: 11px;
   outline-offset: 0;
+  padding-left: 0;
 }
 select {
   font-size: 11px;
@@ -287,11 +285,11 @@ select {
 }
 .job {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 130px 135px 36px;
   align-items: center;
-  gap: 20px;
   border-top: 1px solid #eef0eb;
   padding: 23px 25px;
+  grid-template-columns: minmax(0, 1fr) 110px 145px 76px;
+  gap: 16px;
 }
 .job-title {
   background: none;
@@ -342,10 +340,11 @@ select {
   color: #ac4e41;
 }
 .edit {
-  font-size: 19px;
-  border: 0;
   background: #f7f8f5;
-  padding: 6px;
+  font-size: 12px;
+  min-height: 44px;
+  padding: 8px;
+  border: 1px solid var(--line);
 }
 .job-note {
   font-size: 11px;
@@ -365,17 +364,6 @@ select {
   text-align: center;
   border-top: 1px solid var(--line);
 }
-.empty-icon {
-  font-size: 28px;
-  background: #edf3ec;
-  display: grid;
-  place-items: center;
-  width: 58px;
-  height: 58px;
-  border-radius: 17px;
-  margin: 0 auto 17px;
-  color: #477a5b;
-}
 .empty h3 {
   font-size: 17px;
   font-family: Manrope, sans-serif;
@@ -387,13 +375,6 @@ select {
   line-height: 1.8;
   max-width: 365px;
   margin: 0 auto 20px;
-}
-.empty .demo {
-  background: none;
-  border: 0;
-  color: #68816b;
-  font-size: 11px;
-  margin-left: 8px;
 }
 footer {
   display: flex;
@@ -429,14 +410,17 @@ footer {
   background: transparent;
   border-color: #cedac5;
 }
+/* Editors and shared dialog styles */
 dialog {
   border: 1px solid #e0e6dc;
   border-radius: 16px;
   width: min(580px, calc(100% - 28px));
-  max-height: 90vh;
   padding: 0;
   color: #263a2e;
   box-shadow: 0 25px 100px #14342330;
+  max-height: 90dvh;
+  overflow-y: auto;
+  overscroll-behavior: contain;
 }
 dialog::backdrop {
   background: #1a312657;
@@ -456,10 +440,13 @@ form,
   margin-top: 8px;
 }
 .icon-btn {
-  font-size: 25px;
-  border: 0;
-  padding: 0 6px;
   background: none;
+  font-size: 13px;
+  min-height: 44px;
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  flex-shrink: 0;
 }
 form label {
   display: block;
@@ -526,8 +513,8 @@ form small {
 .notice-row {
   font-size: 12px;
   border-top: 1px solid var(--line);
-  padding: 12px 0;
   line-height: 1.6;
+  padding: 18px 0;
 }
 #toast {
   position: fixed;
@@ -541,6 +528,9 @@ form small {
   font-size: 12px;
   z-index: 10;
   display: none;
+  max-width: calc(100% - 28px);
+  width: max-content;
+  overflow-wrap: anywhere;
 }
 #toast.visible {
   display: block;
@@ -548,177 +538,7 @@ form small {
 [hidden] {
   display: none !important;
 }
-@media (min-width: 1450px) {
-  main {
-    padding: 0 70px;
-  }
-}
-@media (max-width: 1100px) {
-  aside {
-    width: 200px;
-  }
-  main {
-    margin-left: 200px;
-    padding: 0 25px;
-  }
-  .stats {
-    gap: 8px;
-  }
-  .stats > div {
-    padding: 16px 12px;
-  }
-  .job {
-    grid-template-columns: minmax(0, 1fr) 105px 105px 28px;
-    gap: 10px;
-  }
-  .filters {
-    flex-wrap: wrap;
-  }
-  .search {
-    flex-basis: 100%;
-  }
-}
-@media (max-width: 760px) {
-  aside {
-    position: static;
-    width: 100%;
-    padding: 18px 20px;
-    display: block;
-    border-right: 0;
-    border-bottom: 1px solid var(--line);
-  }
-  .brand {
-    font-size: 18px;
-    padding: 0;
-  }
-  .logo {
-    width: 30px;
-    height: 30px;
-    font-size: 23px;
-  }
-  .side-label,
-  .side-bottom {
-    display: none;
-  }
-  .nav {
-    display: inline-flex;
-    margin: 18px 4px 0 0;
-    padding: 9px 8px;
-    gap: 6px;
-  }
-  .nav span {
-    font-size: 10px;
-  }
-  .shell {
-    display: block;
-  }
-  main {
-    margin: 0;
-    padding: 0 18px;
-  }
-  header {
-    height: 60px;
-    font-size: 9px;
-  }
-  .intro {
-    padding: 30px 0;
-    display: block;
-  }
-  h1 {
-    font-size: 36px;
-  }
-  .intro p {
-    line-height: 1.7;
-    max-width: 300px;
-  }
-  .intro > .primary {
-    margin-top: 22px;
-  }
-  .stats {
-    grid-template-columns: 1fr 1fr;
-    gap: 9px;
-  }
-  .stats > div {
-    padding: 17px;
-  }
-  .stats strong {
-    font-size: 29px;
-  }
-  .stats small {
-    font-size: 9px;
-  }
-  .section-title {
-    padding: 19px 16px;
-    display: block;
-  }
-  .utilities {
-    margin-top: 15px;
-  }
-  .filters {
-    padding: 0 16px 18px;
-    gap: 7px;
-  }
-  .filters select {
-    flex: 1;
-    min-width: 0;
-    font-size: 10px;
-  }
-  .job {
-    padding: 20px 16px;
-    grid-template-columns: minmax(0, 1fr) 29px;
-    gap: 13px;
-  }
-  .job > .job-status {
-    grid-column: 1;
-  }
-  .job > .job-deadline {
-    grid-column: 1;
-    grid-row: auto;
-  }
-  .job > .edit {
-    grid-column: 2;
-    grid-row: 1;
-  }
-  .job small {
-    display: inline;
-    margin-right: 6px;
-  }
-  .job-note {
-    max-width: 100%;
-  }
-  .badge {
-    margin-top: 2px;
-  }
-  footer {
-    display: block;
-    line-height: 1.8;
-  }
-  footer span {
-    display: block;
-  }
-  .form-grid {
-    grid-template-columns: 1fr;
-    gap: 0;
-  }
-  form,
-  .notice-inner {
-    padding: 22px;
-  }
-  .modal-actions {
-    flex-wrap: wrap;
-  }
-  .reminder {
-    align-items: start;
-    flex-wrap: wrap;
-  }
-  .reminder button {
-    margin-left: 0;
-  }
-  .empty .demo {
-    display: block;
-    margin: 12px auto 0;
-  }
-}
+/* Activities and follow-up controls */
 .activity-tag {
   display: inline-block;
   background: #f0eafa;
@@ -772,16 +592,7 @@ form small {
   font-size: 12px;
   color: #a04434;
 }
-@media (max-width: 1100px) {
-  .stats > button {
-    padding: 16px 12px;
-  }
-}
-@media (max-width: 760px) {
-  .stats > button {
-    padding: 17px;
-  }
-}
+/* Reminder dialog and batch actions */
 #notice {
   width: min(790px, calc(100% - 28px));
 }
@@ -841,11 +652,8 @@ form small {
 .notice-row-form button,
 .notice-batch button,
 .notice-direct {
-  font-size: 11px;
-  min-height: 38px;
-}
-.notice-row {
-  padding: 18px 0;
+  font-size: 12px;
+  min-height: 40px;
 }
 .notice-row-heading {
   display: flex;
@@ -853,11 +661,11 @@ form small {
   gap: 10px;
 }
 .notice-row-heading h3 {
-  font-size: 14px;
   line-height: 1.5;
   margin: 0;
   color: #263a2e;
   overflow-wrap: anywhere;
+  font-size: 15px;
 }
 .notice-company {
   font-size: 11px;
@@ -871,9 +679,9 @@ form small {
   margin-top: 3px;
 }
 .notice-row p {
-  font-size: 12px;
   margin: 8px 0;
   line-height: 1.6;
+  font-size: 13px;
 }
 .notice-row p.notice-success {
   color: #22634e;
@@ -898,71 +706,25 @@ form small {
   font-size: 12px;
   color: #a04434;
 }
-@media (max-width: 560px) {
-  .notice-row-form label {
-    flex-basis: 100%;
-  }
-  .notice-batch label {
-    flex-basis: 100%;
-  }
-  .notice-row-form button {
-    flex: 1;
-  }
-}
-.notice-row-heading h3 {
-  font-size: 15px;
-}
-.notice-row p {
-  font-size: 13px;
-}
-.notice-row-form button,
-.notice-batch button,
-.notice-direct {
-  font-size: 12px;
-  min-height: 40px;
-}
-@media (max-width: 560px) {
-  .notice-row-form button,
-  .notice-batch button,
-  .notice-direct {
-    min-height: 44px;
-  }
-}
-.transfer-welcome {
-  background: #f6f1e7;
-  border-color: #e8ddc7;
-}
-.transfer-list {
-  font-size: 12px;
-  line-height: 1.8;
-  padding-left: 18px;
-  max-height: 210px;
-  overflow: auto;
-}
+/* Demo introduction and project information */
 .demo-banner {
   border: 1px solid #d5e3d0;
   background: #eaf2e5;
-  padding: 20px 24px;
   border-radius: 12px;
   margin: 24px 0 0;
   display: flex;
   justify-content: space-between;
-  gap: 20px;
   align-items: center;
-}
-.demo-banner strong {
-  display: block;
-  font-family: Manrope, sans-serif;
-  font-size: 18px;
-  letter-spacing: -0.5px;
-  margin: 10px 0;
+  padding: 14px 18px;
+  gap: 16px;
 }
 .demo-banner p {
   font-size: 12px;
   line-height: 1.7;
   color: #6b7c64;
   margin: 0;
-  max-width: 500px;
+  margin-top: 5px;
+  max-width: 550px;
 }
 .demo-pill {
   font-size: 9px;
@@ -972,13 +734,14 @@ form small {
 }
 .demo-banner-actions {
   display: flex;
-  flex-direction: column;
   gap: 8px;
-  flex: 0 0 170px;
+  flex: 0 0 auto;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 .demo-banner-actions button {
   font-size: 12px;
-  min-height: 40px;
+  min-height: 44px;
 }
 .demo-banner-actions #demo-reset {
   border: 0;
@@ -1014,45 +777,6 @@ form small {
   margin-right: 7px;
   margin-bottom: 8px;
 }
-#feedback-result {
-  font-size: 12px;
-  color: #22634e;
-  line-height: 1.7;
-}
-#feedback-copy {
-  font: 12px monospace;
-}
-@media (max-width: 900px) {
-  .demo-banner {
-    display: block;
-  }
-  .demo-banner-actions {
-    flex-direction: row;
-    flex-wrap: wrap;
-    margin-top: 17px;
-  }
-  .demo-about {
-    grid-template-columns: 1fr;
-    gap: 15px;
-  }
-}
-@media (max-width: 560px) {
-  .demo-banner {
-    padding: 18px;
-  }
-  .demo-banner-actions button {
-    flex: 1 1 130px;
-  }
-  .demo-about {
-    padding: 20px;
-  }
-}
-/* Layout and touch controls for small screens. */
-main {
-  min-width: 0;
-  flex: 1;
-  width: auto;
-}
 .job > div,
 .stats > * {
   min-width: 0;
@@ -1063,230 +787,11 @@ main {
 .demo-about {
   overflow-wrap: anywhere;
 }
-dialog {
-  max-height: 90dvh;
-  overflow-y: auto;
-  overscroll-behavior: contain;
-}
-#toast {
-  max-width: calc(100% - 28px);
-  width: max-content;
-  overflow-wrap: anywhere;
-}
-@media (max-width: 760px) {
-  aside {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 6px;
-    padding: 16px;
-  }
-  .brand {
-    grid-column: 1/-1;
-    margin-bottom: 6px;
-  }
-  .nav {
-    margin: 0;
-    min-height: 44px;
-    padding: 10px;
-    gap: 8px;
-  }
-  .nav span {
-    font-size: 13px;
-  }
-  .nav:last-of-type {
-    grid-column: 1/-1;
-  }
-  main {
-    padding: 0 14px;
-    width: 100%;
-  }
-  header {
-    gap: 10px;
-    flex-wrap: wrap;
-  }
-  .intro {
-    padding: 25px 0;
-  }
-  .intro > .primary {
-    width: 100%;
-    min-height: 44px;
-    margin-top: 18px;
-  }
-  .demo-banner {
-    margin-top: 18px;
-    padding: 16px;
-  }
-  .demo-banner-actions {
-    gap: 8px;
-  }
-  .demo-banner-actions button {
-    min-height: 44px;
-  }
-  .stats > div,
-  .stats > button {
-    padding: 14px 12px;
-  }
-  .stats span {
-    font-size: 12px;
-    line-height: 1.5;
-  }
-  .stats small {
-    font-size: 11px;
-    line-height: 1.5;
-    display: block;
-  }
-  .stats strong {
-    margin: 8px 0;
-    font-size: 28px;
-  }
-  .filters {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    padding: 0 14px 18px;
-  }
-  .search {
-    min-width: 0;
-  }
-  .search input,
-  .filters select,
-  form label input,
-  form label select,
-  textarea,
-  .notice-batch input,
-  .notice-row-form input {
-    font-size: 16px;
-    min-height: 44px;
-    min-width: 0;
-    max-width: 100%;
-  }
-  .job-title {
-    font-size: 16px;
-    min-height: 44px;
-  }
-  .job-note,
-  .company {
-    font-size: 13px;
-    line-height: 1.65;
-  }
-  .job .edit {
-    width: 44px;
-    min-height: 44px;
-  }
-  .job {
-    grid-template-columns: minmax(0, 1fr) 44px;
-    padding: 16px 14px;
-    gap: 10px;
-  }
-  .job small,
-  .date,
-  .badge {
-    font-size: 12px;
-  }
-  .followup-action {
-    min-height: 44px;
-    font-size: 13px;
-  }
-  .job-link {
-    display: inline-block;
-    min-height: 44px;
-    padding: 12px 0;
-    margin-left: 0;
-    margin-right: 10px;
-    font-size: 13px;
-  }
-  .reminder {
-    padding: 16px;
-  }
-  .reminder p,
-  .reminder strong {
-    font-size: 13px;
-  }
-  .reminder button {
-    min-height: 44px;
-    width: 100%;
-    font-size: 13px;
-  }
-  form,
-  .notice-inner {
-    padding: 20px 16px;
-  }
-  .modal-head {
-    gap: 10px;
-    align-items: flex-start;
-  }
-  .modal-head h2 {
-    line-height: 1.4;
-    font-size: 20px;
-  }
-  .icon-btn {
-    min-width: 44px;
-    min-height: 44px;
-    flex-shrink: 0;
-  }
-  .modal-actions {
-    flex-direction: column-reverse;
-    align-items: stretch;
-  }
-  .modal-actions button {
-    min-height: 44px;
-    font-size: 14px;
-    width: 100%;
-  }
-  .danger {
-    margin-right: 0;
-  }
-  .notice-inner > #notice-close {
-    width: 100%;
-    min-height: 44px;
-  }
-  .demo-about button,
-  #feedback-form > .primary {
-    min-height: 44px;
-    font-size: 13px;
-  }
-  .demo-about p {
-    font-size: 14px;
-    line-height: 1.75;
-  }
-  .notice-batch button,
-  .notice-direct {
-    min-height: 44px;
-  }
-  .notice-select {
-    width: 24px;
-    height: 24px;
-    margin: 0;
-    outline-offset: 4px;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-}
-
-/* Compact demo introduction and optional walkthrough. */
+/* Navigation and optional walkthrough */
 .demo-menu {
   display: flex;
   flex-direction: column;
   margin-bottom: 12px;
-}
-
-.demo-banner {
-  padding: 14px 18px;
-  gap: 16px;
-}
-.demo-banner p {
-  margin-top: 5px;
-  max-width: 550px;
-}
-.demo-banner-actions {
-  flex: 0 0 auto;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
-.demo-banner-actions button {
-  min-height: 44px;
 }
 .demo-guide {
   border: 1px solid var(--line);
@@ -1346,160 +851,7 @@ dialog {
   padding: 0 18px;
   margin: 16px 0;
 }
-@media (max-width: 760px) {
-  aside {
-    grid-template-columns: minmax(0, 1fr) auto;
-    padding: 12px 14px;
-    align-items: center;
-    gap: 0;
-  }
-  .brand {
-    grid-column: 1;
-    margin: 0;
-    font-size: 18px;
-  }
-
-  .demo-menu {
-    display: none;
-    grid-column: 1/-1;
-    grid-template-columns: 1fr 1fr;
-    gap: 6px;
-    margin: 12px 0 0;
-  }
-
-  .demo-menu .nav:last-of-type {
-    grid-column: 1/-1;
-  }
-  .demo-banner {
-    margin-top: 12px;
-    padding: 12px;
-    gap: 0;
-  }
-  .demo-banner p {
-    font-size: 12px;
-    line-height: 1.5;
-  }
-  .demo-banner-actions {
-    margin-top: 8px;
-    gap: 6px;
-    display: flex;
-    flex-wrap: wrap;
-  }
-  .demo-banner-actions button {
-    flex: 1 1 auto;
-    padding: 8px;
-    font-size: 12px;
-  }
-  header {
-    height: 42px;
-    font-size: 9px;
-  }
-  .intro {
-    padding: 18px 0 16px;
-  }
-  .intro .eyebrow {
-    display: none;
-  }
-  h1 {
-    font-size: 28px;
-    letter-spacing: -1px;
-    margin: 0;
-    line-height: 1.2;
-  }
-  h1 br {
-    display: none;
-  }
-  h1 span::before {
-    content: ' ';
-  }
-  .intro p {
-    margin: 8px 0 0;
-    font-size: 12px;
-    max-width: none;
-    line-height: 1.6;
-  }
-  .intro > .primary {
-    margin-top: 12px;
-    padding: 10px;
-  }
-  .demo-guide {
-    margin-bottom: 18px;
-  }
-  .demo-guide summary {
-    padding: 13px 14px;
-  }
-  .demo-guide ol {
-    grid-template-columns: 1fr;
-    padding: 0 14px;
-    gap: 14px;
-  }
-  .guide-note {
-    padding: 0 14px;
-  }
-}
-
-/* Text controls and responsive record layout. */
-.job {
-  grid-template-columns: minmax(0, 1fr) 110px 145px 76px;
-  gap: 16px;
-}
-.edit {
-  font-size: 12px;
-  min-height: 44px;
-  padding: 8px;
-  border: 1px solid var(--line);
-}
-.icon-btn {
-  font-size: 13px;
-  min-height: 44px;
-  padding: 8px 12px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  flex-shrink: 0;
-}
-.search input {
-  padding-left: 0;
-}
-@media (min-width: 761px) and (max-width: 1100px) {
-  .job {
-    grid-template-columns: minmax(0, 1fr) 90px 110px 70px;
-    gap: 10px;
-  }
-}
-@media (max-width: 760px) {
-  aside {
-    display: block;
-    position: sticky;
-    top: 0;
-    z-index: 3;
-    padding: 12px 14px;
-    background: #fff;
-    box-shadow: 0 2px 8px #203d2a08;
-  }
-  .brand {
-    margin-bottom: 10px;
-  }
-  .demo-menu {
-    display: none;
-  }
-  .workspace {
-    scroll-margin-top: 132px;
-  }
-  .job {
-    grid-template-columns: minmax(0, 1fr) 70px;
-    gap: 10px;
-  }
-  .job .edit {
-    width: 70px;
-    font-size: 12px;
-  }
-  .icon-btn {
-    min-width: 50px;
-  }
-}
-
-/* Shared mobile navigation. The final mobile block places it below the logo.
-   Later media rules override earlier prototypes; preserve their cascade order. */
+/* Mobile navigation and additional views */
 .mobile-navigation {
   display: none;
 }
@@ -1532,44 +884,429 @@ dialog {
   background: #eaf2e5;
   font-weight: 650;
 }
-@media (max-width: 760px) {
-  aside {
-    position: sticky;
-    top: 0;
-    padding: 10px 14px;
-    min-height: 54px;
+.case-link {
+  color: #22634e;
+  text-underline-offset: 3px;
+  font-weight: 600;
+  display: inline-block;
+  padding: 10px 0;
+  line-height: 1.7;
+}
+
+/* (min-width: 1450px) */
+@media (min-width: 1450px) {
+  main {
+    padding: 0 70px;
   }
-  .brand {
-    margin-bottom: 0;
+}
+
+/* (max-width: 1100px) */
+@media (max-width: 1100px) {
+  aside {
+    width: 200px;
   }
   main {
-    padding-bottom: calc(92px + env(safe-area-inset-bottom, 0px));
+    margin-left: 200px;
+    padding: 0 25px;
+  }
+  .stats {
+    gap: 8px;
+  }
+  .stats > div {
+    padding: 16px 12px;
+  }
+  .job {
+    grid-template-columns: minmax(0, 1fr) 105px 105px 28px;
+    gap: 10px;
+  }
+  .filters {
+    flex-wrap: wrap;
+  }
+  .search {
+    flex-basis: 100%;
+  }
+  .stats > button {
+    padding: 16px 12px;
+  }
+}
+
+/* (max-width: 900px) */
+@media (max-width: 900px) {
+  .demo-banner {
+    display: block;
+  }
+  .demo-banner-actions {
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 17px;
+  }
+  .demo-about {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+}
+
+/* (min-width: 761px) and (max-width: 1100px) */
+@media (min-width: 761px) and (max-width: 1100px) {
+  .job {
+    grid-template-columns: minmax(0, 1fr) 90px 110px 70px;
+    gap: 10px;
+  }
+}
+
+/* Phones: compact top navigation, touch controls and stacked content. */
+@media (max-width: 760px) {
+  aside {
+    width: 100%;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 0;
+    display: block;
+    z-index: 3;
+    background: #fff;
+    box-shadow: 0 2px 8px #203d2a08;
+    position: sticky;
+    top: 0;
+    min-height: 54px;
+    padding: 10px 14px 0;
+  }
+  .brand {
+    padding: 0;
+    grid-column: 1;
+    margin: 0;
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+  .logo {
+    width: 30px;
+    height: 30px;
+    font-size: 23px;
+  }
+  .side-label,
+  .side-bottom {
+    display: none;
+  }
+  .nav {
+    display: inline-flex;
+    margin: 0;
+    min-height: 44px;
+    padding: 10px;
+    gap: 8px;
+  }
+  .nav span {
+    font-size: 13px;
+  }
+  .shell {
+    display: block;
+  }
+  main {
+    margin: 0;
+    padding: 0 14px;
+    width: 100%;
+    padding-bottom: 24px;
+  }
+  header {
+    gap: 10px;
+    flex-wrap: wrap;
+    height: 42px;
+    font-size: 9px;
+  }
+  .intro {
+    display: block;
+    padding: 18px 0 16px;
+  }
+  h1 {
+    font-size: 28px;
+    letter-spacing: -1px;
+    margin: 0;
+    line-height: 1.2;
+  }
+  .intro p {
+    margin: 8px 0 0;
+    font-size: 12px;
+    max-width: none;
+    line-height: 1.6;
+  }
+  .intro > .primary {
+    width: 100%;
+    min-height: 44px;
+    margin-top: 12px;
+    padding: 10px;
+  }
+  .stats {
+    grid-template-columns: 1fr 1fr;
+    gap: 9px;
+  }
+  .stats > div {
+    padding: 17px;
+  }
+  .stats strong {
+    margin: 8px 0;
+    font-size: 28px;
+  }
+  .stats small {
+    font-size: 11px;
+    line-height: 1.5;
+    display: block;
+  }
+  .section-title {
+    padding: 19px 16px;
+    display: block;
+  }
+  .filters {
+    gap: 7px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    padding: 0 14px 18px;
+  }
+  .filters select {
+    flex: 1;
+    min-width: 0;
+    font-size: 10px;
+  }
+  .job {
+    padding: 16px 14px;
+    grid-template-columns: minmax(0, 1fr) 70px;
+    gap: 10px;
+  }
+  .job > .job-status {
+    grid-column: 1;
+  }
+  .job > .job-deadline {
+    grid-column: 1;
+    grid-row: auto;
+  }
+  .job > .edit {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  .job small {
+    display: inline;
+    margin-right: 6px;
+  }
+  .job-note {
+    max-width: 100%;
+  }
+  .badge {
+    margin-top: 2px;
+  }
+  footer {
+    display: block;
+    line-height: 1.8;
+  }
+  footer span {
+    display: block;
+  }
+  .form-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  form,
+  .notice-inner {
+    padding: 20px 16px;
+  }
+  .modal-actions {
+    flex-wrap: wrap;
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+  .reminder {
+    align-items: start;
+    flex-wrap: wrap;
+    padding: 16px;
+  }
+  .reminder button {
+    margin-left: 0;
+    min-height: 44px;
+    width: 100%;
+    font-size: 13px;
+  }
+  .stats > button {
+    padding: 17px;
+  }
+  .nav:last-of-type {
+    grid-column: 1/-1;
+  }
+  .demo-banner {
+    margin-top: 12px;
+    padding: 12px;
+    gap: 0;
+  }
+  .demo-banner-actions {
+    margin-top: 8px;
+    gap: 6px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .demo-banner-actions button {
+    min-height: 44px;
+    flex: 1 1 auto;
+    padding: 8px;
+    font-size: 12px;
+  }
+  .stats > div,
+  .stats > button {
+    padding: 14px 12px;
+  }
+  .stats span {
+    font-size: 12px;
+    line-height: 1.5;
+  }
+  .search {
+    min-width: 0;
+  }
+  .search input,
+  .filters select,
+  form label input,
+  form label select,
+  textarea,
+  .notice-batch input,
+  .notice-row-form input {
+    font-size: 16px;
+    min-height: 44px;
+    min-width: 0;
+    max-width: 100%;
+  }
+  .job-title {
+    font-size: 16px;
+    min-height: 44px;
+  }
+  .job-note,
+  .company {
+    font-size: 13px;
+    line-height: 1.65;
+  }
+  .job .edit {
+    min-height: 44px;
+    width: 70px;
+    font-size: 12px;
+  }
+  .job small,
+  .date,
+  .badge {
+    font-size: 12px;
+  }
+  .followup-action {
+    min-height: 44px;
+    font-size: 13px;
+  }
+  .job-link {
+    display: inline-block;
+    min-height: 44px;
+    padding: 12px 0;
+    margin-left: 0;
+    margin-right: 10px;
+    font-size: 13px;
+  }
+  .reminder p,
+  .reminder strong {
+    font-size: 13px;
+  }
+  .modal-head {
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .modal-head h2 {
+    line-height: 1.4;
+    font-size: 20px;
+  }
+  .icon-btn {
+    min-height: 44px;
+    flex-shrink: 0;
+    min-width: 50px;
+  }
+  .modal-actions button {
+    min-height: 44px;
+    font-size: 14px;
+    width: 100%;
+  }
+  .danger {
+    margin-right: 0;
+  }
+  .notice-inner > #notice-close {
+    width: 100%;
+    min-height: 44px;
+  }
+  .demo-about button,
+  #feedback-form > .primary {
+    min-height: 44px;
+    font-size: 13px;
+  }
+  .demo-about p {
+    font-size: 14px;
+    line-height: 1.75;
+  }
+  .notice-batch button,
+  .notice-direct {
+    min-height: 44px;
+  }
+  .notice-select {
+    width: 24px;
+    height: 24px;
+    margin: 0;
+    outline-offset: 4px;
+  }
+  .demo-menu {
+    grid-column: 1/-1;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    margin: 12px 0 0;
+    display: none;
+  }
+  .demo-banner p {
+    font-size: 12px;
+    line-height: 1.5;
+  }
+  .intro .eyebrow {
+    display: none;
+  }
+  h1 br {
+    display: none;
+  }
+  h1 span::before {
+    content: ' ';
+  }
+  .demo-guide {
+    margin-bottom: 18px;
+  }
+  .demo-guide summary {
+    padding: 13px 14px;
+  }
+  .demo-guide ol {
+    grid-template-columns: 1fr;
+    padding: 0 14px;
+    gap: 14px;
+  }
+  .guide-note {
+    padding: 0 14px;
   }
   .workspace {
-    scroll-margin-top: 70px;
+    scroll-margin-top: 118px;
   }
   .mobile-navigation {
-    position: fixed;
-    inset: auto 0 0;
     z-index: 5;
     display: grid;
+    position: static;
+    inset: auto;
     grid-template-columns: repeat(4, minmax(0, 1fr));
+    padding: 0;
     gap: 4px;
-    padding: 6px 8px calc(6px + env(safe-area-inset-bottom, 0px));
-    border-top: 1px solid #d9e2d7;
-    background: #fff;
-    box-shadow: 0 -3px 14px #203d2a0c;
+    border-top: 0;
+    box-shadow: none;
+    background: transparent;
   }
   .mobile-navigation button {
     min-width: 0;
-    min-height: 48px;
     font-size: 12px;
-    padding: 10px 3px;
     border: 0;
     border-radius: 7px;
     color: #586b5d;
     position: relative;
     line-height: 1.5;
+    min-height: 44px;
+    padding: 8px 3px;
   }
   .mobile-navigation button.active {
     color: #174b35;
@@ -1587,59 +1324,11 @@ dialog {
     background: #22634e;
   }
   #toast {
-    bottom: calc(80px + env(safe-area-inset-bottom, 0px));
-  }
-  #more-views {
-    position: fixed;
-    inset: auto 0 0;
-    width: 100%;
-    max-width: none;
-    max-height: 75dvh;
-    margin: 0;
-    border-radius: 16px 16px 0 0;
-    border-bottom: 0;
-    padding-bottom: env(safe-area-inset-bottom, 0px);
-  }
-  html {
-    scroll-padding-bottom: calc(80px + env(safe-area-inset-bottom, 0px));
-  }
-}
-
-/* Keep the compact mobile navigation beside the page header. */
-@media (max-width: 760px) {
-  aside {
-    padding: 10px 14px 0;
-  }
-  .brand {
-    margin-bottom: 8px;
-  }
-  .mobile-navigation {
-    position: static;
-    inset: auto;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    padding: 0;
-    gap: 4px;
-    border-top: 0;
-    box-shadow: none;
-    background: transparent;
-  }
-  .mobile-navigation button {
-    min-height: 44px;
-    padding: 8px 3px;
-  }
-  main {
-    padding-bottom: 24px;
-  }
-  .workspace {
-    scroll-margin-top: 118px;
-  }
-  #toast {
     bottom: 24px;
   }
-  html {
-    scroll-padding-bottom: 20px;
-  }
   #more-views {
+    max-width: none;
+    border-bottom: 0;
     position: fixed;
     inset: 112px 14px auto;
     width: calc(100% - 28px);
@@ -1649,13 +1338,35 @@ dialog {
     padding-bottom: 0;
     margin: 0;
   }
+  html {
+    scroll-padding-bottom: 20px;
+  }
 }
 
-.case-link {
-  color: #22634e;
-  text-underline-offset: 3px;
-  font-weight: 600;
-  display: inline-block;
-  padding: 10px 0;
-  line-height: 1.7;
+/* Small phones: stacked date actions and compact project description. */
+@media (max-width: 560px) {
+  .notice-row-form label {
+    flex-basis: 100%;
+  }
+  .notice-batch label {
+    flex-basis: 100%;
+  }
+  .notice-row-form button {
+    flex: 1;
+  }
+  .notice-row-form button,
+  .notice-batch button,
+  .notice-direct {
+    min-height: 44px;
+  }
+  .demo-about {
+    padding: 20px;
+  }
+}
+
+/* (prefers-reduced-motion: reduce) */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
