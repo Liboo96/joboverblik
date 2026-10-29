@@ -135,3 +135,16 @@ dialog{max-height:90dvh;overflow-y:auto;overscroll-behavior:contain}
  #more-views{position:fixed;inset:auto 0 0;width:100%;max-width:none;max-height:75dvh;margin:0;border-radius:16px 16px 0 0;border-bottom:0;padding-bottom:env(safe-area-inset-bottom,0px)}
  html{scroll-padding-bottom:calc(80px + env(safe-area-inset-bottom,0px))}
 }
+
+/* Keep the compact mobile navigation beside the page header. */
+@media(max-width:760px){
+ aside{padding:10px 14px 0}
+ .brand{margin-bottom:8px}
+ .bottom-nav{position:static;inset:auto;grid-template-columns:repeat(4,minmax(0,1fr));padding:0;gap:4px;border-top:0;box-shadow:none;background:transparent}
+ .bottom-nav button{min-height:44px;padding:8px 3px}
+ main{padding-bottom:24px}
+ .workspace{scroll-margin-top:118px}
+ #toast{bottom:24px}
+ html{scroll-padding-bottom:20px}
+ #more-views{position:fixed;inset:112px 14px auto;width:calc(100% - 28px);max-height:calc(100dvh - 140px);border:1px solid var(--line);border-radius:12px;padding-bottom:0;margin:0}
+}

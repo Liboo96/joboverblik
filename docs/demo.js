@@ -6,7 +6,7 @@ export function initDemo({reset,showReminders,addRecord,changeStatus,planFollowu
  sidebar.querySelectorAll('.nav').forEach(button=>menu.append(button));
  sidebar.querySelector('.side-label').after(menu);
  const bottom=document.createElement('nav');bottom.className='bottom-nav';bottom.setAttribute('aria-label','Mobilnavigation');bottom.innerHTML='<button type="button" data-mobile-view="all">Overblik</button><button type="button" data-mobile-view="followup">Opfølgning</button><button type="button" data-mobile-view="activities">Aktiviteter</button><button type="button" id="mobile-more" aria-haspopup="dialog" aria-controls="more-views" aria-expanded="false">Mere</button>';
- document.body.append(bottom);
+ sidebar.append(bottom);
  const more=document.createElement('dialog');more.id='more-views';more.setAttribute('aria-labelledby','more-title');more.innerHTML='<div class="more-inner"><div class="more-heading"><h2 id="more-title">Flere visninger</h2><button type="button" id="more-close">Luk</button></div><button type="button" data-mobile-view="action">Kræver handling</button><button type="button" data-mobile-view="closed">Afsluttede</button></div>';
  document.body.append(more);
  const moreButton=bottom.querySelector('#mobile-more');
