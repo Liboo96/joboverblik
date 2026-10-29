@@ -148,3 +148,5 @@ dialog{max-height:90dvh;overflow-y:auto;overscroll-behavior:contain}
  html{scroll-padding-bottom:20px}
  #more-views{position:fixed;inset:112px 14px auto;width:calc(100% - 28px);max-height:calc(100dvh - 140px);border:1px solid var(--line);border-radius:12px;padding-bottom:0;margin:0}
 }
+
+.case-link{color:#22634e;text-underline-offset:3px;font-weight:600;display:inline-block;padding:10px 0;line-height:1.7}

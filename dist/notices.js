@@ -1,4 +1,4 @@
-import{alerts,localDay,followupState,scheduleFollowup,finishFollowup,isActivity}from'./logic.mjs?v=demo-8';
+import{alerts,localDay,followupState,scheduleFollowup,finishFollowup,isActivity}from'./logic.mjs?v=demo-9';
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const fmt=date=>new Intl.DateTimeFormat('da-DK',{day:'numeric',month:'long'}).format(new Date(date+'T12:00:00'));
 export function initNotices({getJobs,save,render,toast,edit}){

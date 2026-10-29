@@ -1,8 +1,8 @@
-import{initNotices}from'./notices.js?v=demo-8';
-import{initFollowup}from'./followup.js?v=demo-8';
-import{statuses,localDay,daysBetween,pending,alerts,validJob,isActivity,statusesFor,recordDate,withoutDemo,followupState,needsFollowup}from'./logic.mjs?v=demo-8';
-import{initDemo}from'./demo.js?v=demo-8';
-import{createDemoRecords}from'./sample.mjs?v=demo-8';
+import{initNotices}from'./notices.js?v=demo-9';
+import{initFollowup}from'./followup.js?v=demo-9';
+import{statuses,localDay,daysBetween,pending,alerts,validJob,isActivity,statusesFor,recordDate,withoutDemo,followupState,needsFollowup}from'./logic.mjs?v=demo-9';
+import{initDemo}from'./demo.js?v=demo-9';
+import{createDemoRecords}from'./sample.mjs?v=demo-9';
 const $=s=>document.querySelector(s),key='joboverblik.demo.v1',seenKey='joboverblik.demo.seen.v1';let jobs=[],seen={},view='all',toastTimer;
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const fmt=d=>d?new Intl.DateTimeFormat('da-DK',{day:'numeric',month:'short',year:d.slice(0,4)!==localDay().slice(0,4)?'numeric':undefined}).format(new Date(d+'T12:00:00')):'Ingen frist';

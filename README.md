@@ -6,6 +6,8 @@ En lille dansk webapp til overblik over jobsøgningen. Projektet udspringer af m
 
 Dette repository indeholder en separat demo med fiktive oplysninger. Du kan tilføje en stilling, ændre status, planlægge opfølgning og registrere en aktivitet. Start forfra nulstiller prøveoplysningerne. Åbn demoen på https://Liboo96.github.io/joboverblik/ .
 
+[Læs projektcasen med behov, arbejdsdeling med AI og afprøvning](CASE.md)
+
 ## Projektets fokus
 
 Jeg er uddannet cand.it. i IT, Kommunikation og Organisation. Med projektet vil jeg vise arbejdet fra et konkret behov til en afgrænset løsning, der kan afprøves.
