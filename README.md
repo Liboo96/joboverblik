@@ -20,7 +20,7 @@ Konkrete valg undervejs:
 
 ## Teknik og begrænsninger
 
-HTML, CSS og JavaScript-moduler uden et frontend-framework. Demoen bruger sessionStorage i den aktuelle fane. Den har ingen login, database eller automatisk synkronisering. Brug fiktive oplysninger. Påmindelser vises, når siden er åben. Feedback kopieres kun efter et klik og sendes ikke automatisk.
+HTML, CSS og JavaScript-moduler uden et frontend-framework. Demoen bruger sessionStorage i den aktuelle fane. Den har ingen login, database eller automatisk synkronisering. Brug fiktive oplysninger. Påmindelser vises, når siden er åben. Feedbackknappen åbner Google Forms i en ny fane. Alle kan svare uden login. Der indsamles ikke navn eller e-mail i formularen. Kun indsendte feedbacksvar overføres; demoens stillinger og noter indgår ikke. Svarene er private for formularejeren, som har aktiveret mailnotifikationer.
 
 ## Kør og kontroller
 
