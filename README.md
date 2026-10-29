@@ -20,7 +20,7 @@ Konkrete valg undervejs:
 
 ## Teknik og begrænsninger
 
-HTML, CSS og JavaScript-moduler uden et frontend-framework. Demoen bruger sessionStorage i den aktuelle fane. Den har ingen login, database, automatisk synkronisering eller Jobnet-forbindelse. Brug fiktive oplysninger. Påmindelser vises, når siden er åben. Feedback kopieres kun efter et klik og sendes ikke automatisk.
+HTML, CSS og JavaScript-moduler uden et frontend-framework. Demoen bruger sessionStorage i den aktuelle fane. Den har ingen login, database eller automatisk synkronisering. Brug fiktive oplysninger. Påmindelser vises, når siden er åben. Feedback kopieres kun efter et klik og sendes ikke automatisk.
 
 ## Kør og kontroller
 
