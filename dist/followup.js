@@ -1,4 +1,4 @@
-import{localDay,followupState,scheduleFollowup,finishFollowup}from'./logic.mjs?v=demo-6';
+import{localDay,followupState,scheduleFollowup,finishFollowup}from'./logic.mjs?v=demo-7';
 export function initFollowup({getJobs,save,render,toast}){
  const dialog=document.createElement('dialog');dialog.id='followup-dialog';
  dialog.innerHTML='<form id="followup-form"><div class="modal-head"><div><div class="eyebrow">DIT NÆSTE SKRIDT</div><h2>Opfølgning</h2></div><button type="button" class="icon-btn" id="followup-close" aria-label="Luk opfølgning">Luk</button></div><strong id="followup-title"></strong><p id="followup-context" class="followup-context"></p><label>Opfølgningsdato<input type="date" id="followup-date" required><small>Du vælger selv, hvornår du vil tjekke efter svar eller kontakte virksomheden.</small></label><p class="form-note">Påmindelsen vises i appen. Den sender ikke en besked til virksomheden.</p><p role="status" id="followup-error"></p><div class="modal-actions"><button type="button" id="followup-done">Markér som fulgt op</button><button type="submit" class="primary">Gem opfølgningsdato</button></div></form>';
