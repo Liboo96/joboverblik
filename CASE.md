@@ -4,6 +4,8 @@ Et personligt projekt af Liban Farah. Udviklet med AI som værktøj.
 
 [Prøv demoen](https://liboo96.github.io/joboverblik/) · [Se koden](https://github.com/Liboo96/joboverblik)
 
+![Joboverblik med fiktive data](assets/portfolio/joboverblik-desktop.png)
+
 ## Et behov fra min egen jobsøgning
 
 Jeg manglede et samlet sted til at holde styr på stillinger, ansøgningsfrister og opfølgning. Jeg ville kunne se, hvor langt jeg var med en ansøgning, gemme mine noter og vælge mit næste skridt.

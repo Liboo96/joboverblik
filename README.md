@@ -8,6 +8,12 @@ Dette repository indeholder en separat demo med fiktive oplysninger. Du kan tilf
 
 [Læs projektcasen med behov, arbejdsdeling med AI og afprøvning](CASE.md)
 
+![Joboverblik med fiktive ansøgninger, nøgletal og opfølgning](assets/portfolio/joboverblik-desktop.png)
+
+Mobilvisningen er også kontrolleret:
+
+<img src="assets/portfolio/joboverblik-mobile.png" alt="Joboverblik på mobil" width="360">
+
 ## Projektets fokus
 
 Jeg er uddannet cand.it. i IT, Kommunikation og Organisation. Med projektet vil jeg vise arbejdet fra et konkret behov til en afgrænset løsning, der kan afprøves.
